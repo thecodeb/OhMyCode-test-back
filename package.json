@@ -4,6 +4,7 @@
     "description": "Prueba de conocimientos sobre backend para OhMyCode",
     "main": "index.js",
     "scripts": {
+        "heroku-postbuild": "npm run build",
         "start": "node src/index.js",
         "dev": "nodemon src/index.js"
     },
