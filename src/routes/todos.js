@@ -37,7 +37,7 @@ router.get("/todos", async(req, res) => {
 router.get("/todos/:id", async(req, res) => {
     const authToken = JSON.stringify(req.headers.authorization);
     if (isAuth(authToken)) {
-        const result = await Register.find({ _id: req.params.id });
+        const result = await Register.find({ user: req.params.id });
         if (result) {
             res.status(200).send({
                 data: result,
