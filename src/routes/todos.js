@@ -31,7 +31,7 @@ router.get("/todos", async(req, res) => {
 });
 
 /**
- * Ruta para obtener un registro concreto de la BBDD
+ * Ruta para obtener un registro concreto
  */
 
 router.get("/todos/:id", async(req, res) => {
