@@ -31,13 +31,35 @@ router.get("/todos", async(req, res) => {
 });
 
 /**
+ * Ruta para obtener todos los registros de un usuario concreto
+ */
+
+router.get("/todos/user/:id", async(req, res) => {
+    const authToken = JSON.stringify(req.headers.authorization);
+    if (isAuth(authToken)) {
+        const result = await Register.find({ user: req.params.id });
+        if (result) {
+            res.status(200).send({
+                data: result,
+            });
+        } else {
+            res.status(404).send({
+                msg: "ERROR: Not found",
+            });
+        }
+    } else {
+        res.sendStatus(403);
+    }
+});
+
+/**
  * Ruta para obtener un registro concreto
  */
 
 router.get("/todos/:id", async(req, res) => {
     const authToken = JSON.stringify(req.headers.authorization);
     if (isAuth(authToken)) {
-        const result = await Register.find({ user: req.params.id });
+        const result = await Register.find({ _id: req.params.id });
         if (result) {
             res.status(200).send({
                 data: result,
